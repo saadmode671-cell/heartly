@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heartly – Best friends first</title>
+<style>
+:root{--cream:#FFFBF1;--ink:#1A1200;--m:rgba(26,18,0,.55);--m2:rgba(26,18,0,.4);--gold:#FFB800;--tint:rgba(255,184,0,.075);--glass:rgba(255,255,255,.5);--btn:rgba(26,18,0,.10);
+--shadow:0 5px 10px rgba(0,0,0,.04),0 19px 19px rgba(0,0,0,.03),0 43px 26px rgba(0,0,0,.02),0 76px 30px rgba(0,0,0,.01);
+--font:"SF Pro Rounded",ui-rounded,"Nunito",system-ui,sans-serif;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--cream);color:var(--ink);font:500 16px/1.5 var(--font);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit;text-decoration:none}
+svg{display:block}
+.glow{position:absolute;inset:0 0 auto;height:620px;background:radial-gradient(60% 100% at 50% 0,rgba(255,200,40,.32),rgba(255,200,40,0) 70%);pointer-events:none;z-index:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px;position:relative}
+/* nav */
+nav{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;height:84px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.sq{display:grid;place-items:center;background:linear-gradient(145deg,#FFD24D,#FFA800);border-radius:22%;box-shadow:inset 0 2px 3px rgba(255,255,255,.6),0 6px 14px rgba(255,170,0,.35)}
+.sq svg{width:56%;height:56%}
+.logo .sq{width:34px;height:34px}
+.links{display:flex;gap:28px;font-size:14px;color:var(--m)}
+.links a{transition:color .2s}.links a:hover{color:var(--ink)}
+.pill{display:inline-flex;align-items:center;height:38px;padding:0 18px;border-radius:999px;background:var(--btn);font-size:14px;font-weight:700;transition:background .2s,transform .2s}
+.pill:hover{background:rgba(26,18,0,.16);transform:translateY(-1px)}
+/* hero */
+.hero{position:relative;overflow-x:clip;padding-bottom:40px}
+.stage{position:relative;left:50%;transform:translateX(-50%);width:max(100%,780px);max-width:1100px;aspect-ratio:1000/690;container-type:inline-size;z-index:1}
+.phone{position:absolute;left:50%;top:3%;width:29cqw;aspect-ratio:290/580;translate:-50% 0;rotate:-8deg;border-radius:15cqw 15cqw 0 0;border:1.2cqw solid rgba(255,255,255,.75);border-bottom:0;
+background:linear-gradient(160deg,rgba(255,236,170,.75),rgba(255,214,200,.55) 55%,rgba(255,255,255,.3));backdrop-filter:blur(14px);box-shadow:0 30px 70px rgba(255,170,0,.22),inset 0 0 40px rgba(255,255,255,.6);
+-webkit-mask-image:linear-gradient(#000 55%,transparent 98%);mask-image:linear-gradient(#000 55%,transparent 98%);padding:7cqw 2.6cqw 0}
+.phone::before{content:"";position:absolute;top:1.6cqw;left:50%;width:8cqw;height:2.2cqw;border-radius:9cqw;background:rgba(26,18,0,.78);translate:-50% 0}
+.clock{text-align:center;font-weight:700;font-size:2.6cqw;color:rgba(26,18,0,.6);margin:-1.6cqw 0 2cqw}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:2.4cqw 1.8cqw}
+.icons i{aspect-ratio:1;border-radius:22%;background:var(--c);box-shadow:inset 0 1px 2px rgba(255,255,255,.7),0 3px 8px rgba(0,0,0,.06)}
+.icons .sq{aspect-ratio:1}
+.s{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1cqw);transform:translate3d(var(--px,0px),var(--py,0px),0);will-change:transform;z-index:2}
+.in{rotate:calc(var(--r)*1deg);animation:bob var(--t,5s) ease-in-out infinite;animation-delay:var(--dl,0s);filter:drop-shadow(0 8px 10px rgba(80,50,0,.18))}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.photo{border-radius:24px;border:4px solid #fff;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.14);background:#fff}
+.photo svg{width:100%;height:auto}
+.in>svg{width:100%;height:auto}
+.txt{font-weight:900;text-align:center;line-height:1}
+.iheart{background:#fff;border:3px solid var(--ink);border-radius:18px;padding:5% 6%;font-size:2.6cqw;font-weight:900;letter-spacing:.02em;text-align:center;color:var(--ink);box-shadow:3px 4px 0 var(--gold)}
+.iheart b{color:#FF3B5C}
+.gold{background:var(--ink);color:var(--gold);border-radius:999px;font-weight:900;font-size:2.4cqw;padding:.7cqw 2cqw;text-align:center;letter-spacing:.12em;border:.4cqw solid #fff}
+.pink{background:linear-gradient(135deg,#FF8FB6,#FFD1E3);color:#fff;border:.5cqw solid #fff;border-radius:2cqw;padding:1.4cqw;font-weight:900;font-size:2.7cqw;line-height:1.05;text-shadow:0 2px 0 rgba(200,40,100,.35);text-align:center}
+.mega{font-size:7cqw;line-height:1}
+.qr{position:absolute;left:60%;top:41%;width:19cqw;rotate:6deg;background:#fff;border-radius:24px;padding:1.6cqw;box-shadow:0 16px 50px rgba(0,0,0,.18);z-index:3;transition:rotate .3s,scale .3s;cursor:pointer}
+.qr:hover{rotate:2deg;scale:1.04}
+.qr svg{width:100%;height:auto}
+.qr .tip{position:absolute;left:50%;bottom:calc(100% + 10px);translate:-50% 6px;background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:8px 14px;border-radius:14px;white-space:nowrap;opacity:0;pointer-events:none;transition:.25s;rotate:-6deg}
+.qr:hover .tip,.qr:focus-visible .tip{opacity:1;translate:-50% 0}
+.lockup{text-align:center;margin-top:-6px;position:relative;z-index:3}
+.lockup .brand{display:inline-flex;align-items:center;gap:14px;font-size:40px;font-weight:700;letter-spacing:-.01em}
+.lockup .sq{width:56px;height:56px}
+.lockup p{margin:14px auto 0;max-width:520px;font-size:22px;font-weight:600;color:var(--m);line-height:1.3;padding:0 20px}
+.chev{display:inline-block;margin-top:14px;font-size:26px;color:var(--m2);animation:chev 1.6s ease-in-out infinite}
+@keyframes chev{50%{translate:0 8px}}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:70px 24px 40px}
+.card{display:flex;flex-direction:column;min-height:300px;padding:32px;border-radius:40px;background:var(--tint);box-shadow:var(--shadow);transition:transform .35s cubic-bezier(.3,1.4,.5,1),box-shadow .35s}
+.card:hover,.card:focus-visible{transform:translateY(-4px)}
+.card .art{height:120px;margin-bottom:auto;transform-origin:30% 80%}
+.card .art svg{height:100%;width:auto}
+.card:hover .art,.card:focus-visible .art{animation:wig .6s ease}
+@keyframes wig{0%,100%{rotate:0deg}20%{rotate:-8deg}45%{rotate:7deg}70%{rotate:-4deg}}
+.card h3{margin:28px 0 6px;font-size:20px;font-weight:700}
+.card p{margin:0;font-size:15px;color:var(--m);line-height:1.4}
+.rv{opacity:0;translate:0 24px;transition:opacity .7s,translate .7s}.rv.on{opacity:1;translate:0 0}
+/* footer */
+footer{position:relative;margin-top:60px;overflow:hidden}
+.fgrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px;padding:40px 24px 70px}
+.fgrid .logo{font-size:28px}.fgrid .logo .sq{width:44px;height:44px}
+.soc{display:flex;gap:10px;margin:22px 0 14px}
+.soc a{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--btn);transition:background .2s,transform .2s}
+.soc a:hover{background:var(--gold);transform:translateY(-2px)}
+.soc svg{width:18px;height:18px;fill:var(--ink)}
+.copy{font-size:14px;color:var(--m2)}
+h4{margin:0 0 14px;font-size:14px;font-weight:700}
+.col a{display:block;font-size:14px;color:var(--m);padding:4px 0;transition:color .2s,translate .2s}
+.col a:hover{color:var(--ink);translate:3px 0}
+.word{display:block;white-space:nowrap;text-align:center;font-weight:900;line-height:.78;letter-spacing:-.01em;margin:0 0 -.12em;user-select:none;
+background:linear-gradient(180deg,rgba(255,184,0,0) 0%,rgba(255,184,0,.3) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding:0 12px}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.links{display:none}.fgrid{grid-template-columns:1fr 1fr}.fgrid>:first-child{grid-column:1/-1}}
+@media(max-width:560px){.cards{grid-template-columns:1fr;padding-top:40px}.lockup .brand{font-size:34px}.lockup p{font-size:19px}.card{min-height:250px}.qr .tip{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;translate:0 0}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE06B"/><stop offset=".55" stop-color="#FFB800"/><stop offset="1" stop-color="#E88F00"/></linearGradient>
+<linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="bk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3326"/><stop offset="1" stop-color="#0d0a02"/></linearGradient>
+<symbol id="hp" viewBox="0 0 24 24"><path d="M12 21.2S3.2 15.8 2 9.8C1.3 6 3.8 3.5 7 3.5c2 0 3.9 1.1 5 3 1.1-1.9 3-3 5-3 3.200 0 5.700 2.500 5 6.300-1.200 6-10 11.400-10 11.400z"/></symbol>
+<symbol id="hg" viewBox="0 0 24 24"><use href="#hp" fill="url(#g)"/><path d="M6.500 5.600c-1.700.2-2.800 1.700-2.500 3.400" stroke="url(#gs)" stroke-width="1.800" stroke-linecap="round" fill="none"/></symbol>
+<symbol id="ho" viewBox="0 0 24 24"><use href="#hp" fill="none" stroke="#fff" stroke-width="2.200" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="hero">
+<div class="glow"></div>
+<div class="wrap">
+<nav aria-label="Main">
+<a class="logo" href="#top" aria-label="Heartly home"><span class="sq"><svg viewBox="0 0 24 24"><use href="#ho"/></svg></span>Heartly</a>
+<div class="links"><a href="#help">Help</a><a href="#parents">Parents</a><a href="#creators">Creators</a><a href="#partners">Partnerships</a><a href="#careers">Careers</a></div>
+<a class="pill" href="#download">Download</a>
+</nav>
+</div>
+
+<div class="stage" id="stage">
+<div class="phone" aria-hidden="true">
+<div class="clock">9:41</div>
+<div class="icons" id="icons"></div>
+</div>
+
+<div class="s" data-d=".05" style="--x:13;--y:5;--w:15;--r:-10;--t:5.2s"><div class="in"><svg viewBox="0 0 64 48"><use href="#hg" x="0" y="8" width="38" height="38"/><use href="#hg" x="26" y="0" width="36" height="36" style="transform:rotate(14deg);transform-origin:44px 18px"/></svg></div></div>
+
+<div class="s" data-d=".08" style="--x:4;--y:30;--w:17;--r:-6;--t:6s;--dl:-1s"><div class="in photo" role="img" aria-label="Illustration of friends taking a selfie"><svg viewBox="0 0 120 120"><rect width="120" height="120" fill="#FFE9A8"/><circle cx="30" cy="40" r="20" fill="#F2B38C"/><path d="M10 38c2-20 38-24 40 0-12-8-28-8-40 0z" fill="#5a3a22"/><circle cx="80" cy="46" r="20" fill="#C98A5E"/><path d="M60 42c0-26 40-26 40 0-14-10-26-10-40 0z" fill="#1d1208"/><circle cx="55" cy="84" r="22" fill="#FFD2B3"/><path d="M33 84c-4-30 46-30 44 0-8-14-34-14-44 0z" fill="#e9a23b"/><g fill="#1A1200"><circle cx="24" cy="40" r="2"/><circle cx="37" cy="40" r="2"/><circle cx="74" cy="46" r="2"/><circle cx="87" cy="46" r="2"/><circle cx="49" cy="84" r="2"/><circle cx="62" cy="84" r="2"/></g><g stroke="#1A1200" stroke-width="2" fill="none" stroke-linecap="round"><path d="M25 48q6 6 12 0"/><path d="M75 54q6 6 12 0"/><path d="M50 92q6 6 12 0"/></g><rect x="86" y="86" width="22" height="30" rx="5" fill="#1A1200"/></svg></div></div>
+
+<div class="s" data-d=".06" style="--x:21;--y:56;--w:18;--r:7;--t:5.8s;--dl:-2s"><div class="in"><svg viewBox="0 0 120 110"><path d="M60 4l10 8 12-4 6 11 13 1 1 13 11 7-5 12 7 11-10 8 1 13-13 3-5 12-12-3-9 9-9-9-12 3-5-12-13-3 1-13-10-8 7-11-5-12 11-7 1-13 13-1 6-11 12 4z" fill="url(#g)" stroke="#1A1200" stroke-width="4" stroke-linejoin="round" transform="translate(0 -2) scale(.98)"/><text x="60" y="48" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="17" fill="#1A1200">BEST</text><text x="60" y="68" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="17" fill="#1A1200">FRIENDS</text><text x="60" y="88" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="17" fill="#1A1200">FIRST</text></svg></div></div>
+
+<div class="s" data-d=".1" style="--x:31;--y:3;--w:8;--r:12;--t:4.4s;--dl:-.5s"><div class="in"><svg viewBox="0 0 24 24"><use href="#hg"/></svg></div></div>
+
+<div class="s" data-d=".07" style="--x:73;--y:5;--w:14;--r:6;--t:5.5s;--dl:-1.5s"><div class="in iheart">I <b>♥</b> HEARTLY</div></div>
+
+<div class="s" data-d=".09" style="--x:68;--y:24;--w:12;--r:5;--t:6.4s;--dl:-3s"><div class="in photo" role="img" aria-label="Illustration of a girl smiling holding a heart"><svg viewBox="0 0 100 120"><rect width="100" height="120" fill="#FFD6E4"/><path d="M10 120c0-34 80-34 80 0z" fill="#fff"/><circle cx="50" cy="56" r="26" fill="#F6C3A0"/><path d="M22 60c-6-48 62-48 56 0-6-16-16-24-28-24S28 44 22 60z" fill="#3b2314"/><circle cx="41" cy="58" r="2.400" fill="#1A1200"/><circle cx="59" cy="58" r="2.400" fill="#1A1200"/><path d="M40 68q10 10 20 0" stroke="#1A1200" stroke-width="2.600" fill="none" stroke-linecap="round"/><circle cx="36" cy="66" r="4" fill="#ff9aa8" opacity=".6"/><circle cx="64" cy="66" r="4" fill="#ff9aa8" opacity=".6"/><svg x="64" y="76" width="30" height="30" viewBox="0 0 24 24"><use href="#hg"/></svg></svg></div></div>
+
+<div class="s" data-d=".06" style="--x:86;--y:20;--w:10;--r:-8;--t:4.8s;--dl:-2.200s"><div class="in gold">GOLD</div></div>
+
+<div class="s" data-d=".1" style="--x:79;--y:47;--w:14;--r:-14;--t:7s;--dl:-.8s"><div class="in"><svg viewBox="0 0 120 120"><rect x="6" y="6" width="108" height="108" rx="14" fill="url(#g)" stroke="#1A1200" stroke-width="3" stroke-dasharray="6 4"/><g font-family="Nunito,sans-serif" font-weight="900" font-size="15" fill="#1A1200"><text x="14" y="34">HEARTLY HEARTLY</text><text x="14" y="62">HEARTLY HEARTLY</text><text x="14" y="90">HEARTLY HEARTLY</text></g></svg></div></div>
+
+<div class="s" data-d=".12" style="--x:62;--y:68;--w:12;--r:10;--t:5s;--dl:-1.200s"><div class="in"><svg viewBox="0 0 24 24"><use href="#hg"/></svg></div></div>
+
+<div class="s" data-d=".06" style="--x:3;--y:68;--w:15;--r:5;--t:6.200s;--dl:-2.500s"><div class="in photo" role="img" aria-label="Illustration of a sunny landscape"><svg viewBox="0 0 140 90"><rect width="140" height="90" fill="#BFE6FF"/><circle cx="104" cy="26" r="14" fill="#FFD24D"/><path d="M0 70c30-30 50-20 80-6s40 6 60-12v38H0z" fill="#7BCB8B"/><path d="M0 80c40-16 70 0 140-8v18H0z" fill="#4FB070"/></svg></div></div>
+
+<div class="s" data-d=".08" style="--x:84;--y:72;--w:13;--r:-6;--t:5.600s;--dl:-1.800s"><div class="in pink">stay<br>close ♡</div></div>
+
+<div class="s" data-d=".11" style="--x:39;--y:76;--w:8;--r:-12;--t:4.600s;--dl:-.2s"><div class="in mega" aria-hidden="true">📣</div></div>
+
+<button class="qr" type="button" aria-label="Scan with your phone to download Heartly" id="qr">
+<span class="tip">Scan with your phone to download Heartly</span>
+<svg id="qrsvg" viewBox="0 0 29 29" aria-hidden="true"></svg>
+</button>
+</div>
+
+<div class="lockup" id="top">
+<div class="brand"><span class="sq"><svg viewBox="0 0 24 24"><use href="#ho"/></svg></span>Heartly</div>
+<p>Your friends are moving in… to your Home Screen</p>
+<a class="chev" href="#help" aria-label="Scroll down">⌄</a>
+</div>
+</header>
+
+<main>
+<section class="wrap cards" aria-label="Links" style="max-width:1248px">
+<a class="card rv" id="help" href="#help">
+<div class="art"><svg viewBox="0 0 150 120"><ellipse cx="75" cy="112" rx="58" ry="6" fill="rgba(0,0,0,.08)"/><path d="M14 18h66a14 14 0 0 1 14 14v34a14 14 0 0 1-14 14H44L24 96V80h-4a14 14 0 0 1-14-14V32A14 14 0 0 1 14 18z" fill="url(#bk)"/><path d="M14 22h60" stroke="#fff" stroke-opacity=".2" stroke-width="3" stroke-linecap="round"/><text x="47" y="68" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="44" fill="url(#g)">?</text><g transform="translate(78 44)"><rect width="62" height="54" rx="22" fill="url(#g)"/><svg x="14" y="12" width="34" height="32" viewBox="0 0 24 24"><use href="#ho" stroke-width="2.400"/></svg></g></svg></div>
+<h3>Help Center</h3><p>Get support and find common answers to your questions</p></a>
+
+<a class="card rv" id="parents" href="#parents" style="transition-delay:.06s">
+<div class="art"><svg viewBox="0 0 150 120"><ellipse cx="75" cy="112" rx="58" ry="6" fill="rgba(0,0,0,.08)"/><circle cx="40" cy="30" r="20" fill="url(#bk)"/><path d="M8 102c0-34 14-52 32-52s32 18 32 52z" fill="url(#bk)"/><path d="M22 28c4 6 12 8 20 6" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M110 14l32 12v30c0 24-16 38-32 46-16-8-32-22-32-46V26z" fill="url(#g)"/><path d="M110 14l32 12v30c0 24-16 38-32 46z" fill="#000" opacity=".08"/><svg x="94" y="40" width="32" height="32" viewBox="0 0 24 24"><use href="#hp" fill="#1A1200"/></svg></svg></div>
+<h3>Parent Center</h3><p>Learn how Heartly stays safe, positive, and fun for teens</p></a>
+
+<a class="card rv" id="partners" href="#partners" style="transition-delay:.12s">
+<div class="art"><svg viewBox="0 0 150 120"><ellipse cx="75" cy="112" rx="58" ry="6" fill="rgba(0,0,0,.08)"/><path d="M12 36h34a10 10 0 1 1 20 0h12v26a10 10 0 1 0 0 20v14H12z" fill="url(#g)"/><path d="M14 38h30" stroke="#fff" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"/><path d="M78 40h22a10 10 0 1 1 20 0h20v54h-62V82a10 10 0 1 0 0-20z" fill="url(#bk)" transform="translate(-4 -4)"/></svg></div>
+<h3>Partnerships</h3><p>Reach Gen Alpha on the most direct and intimate social platform</p></a>
+
+<a class="card rv" id="careers" href="#careers" style="transition-delay:.18s">
+<div class="art"><svg viewBox="0 0 150 120"><ellipse cx="75" cy="112" rx="58" ry="6" fill="rgba(0,0,0,.08)"/><path d="M12 56L136 10 98 106 70 76 52 96 50 70z" fill="url(#g)"/><path d="M136 10L50 70 70 76z" fill="#fff" opacity=".35"/><path d="M70 76l28 30 4-60z" fill="#E88F00"/><circle cx="48" cy="102" r="3" fill="#1A1200"/></svg></div>
+<h3>Careers</h3><p>Join the team building the social app that loves you back</p></a>
+</section>
+</main>
+
+<footer id="download">
+<div class="wrap fgrid">
+<div>
+<a class="logo" href="#top"><span class="sq"><svg viewBox="0 0 24 24"><use href="#ho"/></svg></span>Heartly</a>
+<div class="soc">
+<a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.500-3.200a1.200 1.200 0 1 1 0 2.400 1.200 1.200 0 0 1 0-2.400z"/></svg></a>
+<a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.800 3h3.200l-7 8 8.200 10h-6.400l-5-6.200L5 21H1.800l7.500-8.600L1.500 3h6.600l4.500 5.700zm-1.100 16h1.800L7 4.800H5z"/></svg></a>
+<a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.500 2h-3.400v13.200a2.700 2.700 0 1 1-2.700-2.700c.3 0 .6 0 .8.100V9.100a6.100 6.100 0 1 0 5.300 6.100V8.600a7.500 7.500 0 0 0 4.200 1.300V6.500a4.300 4.300 0 0 1-4.200-4.500z"/></svg></a>
+</div>
+<div class="copy">© 2026 Heartly Labs, Inc.</div>
+</div>
+<div class="col"><h4>Download</h4><a href="#">iOS</a><a href="#">Android</a></div>
+<div class="col"><h4>About</h4><a href="#">News</a><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Cookie Policy</a><a href="#">Brand</a></div>
+<div class="col"><h4>Get in Touch</h4><a href="#help">Help Center</a><a href="#creators" id="creators">Creators</a><a href="#partners">Partnerships</a><a href="#">Press</a></div>
+</div>
+<span class="word" id="word" aria-hidden="true">BEST FRIENDS FIRST</span>
+</footer>
+
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// phone icons
+var cols=['#FFD9D0','#CDE8FF','#D8F5D0','#FFE9A8','#E6D6FF','#FFD1E3','#CFF3F0','#FFE0C2','#E9EEC9','#D9DDFF','#FFD9D0','#CDE8FF','#D8F5D0','#FFE9A8','#E6D6FF','#FFD1E3'];
+var box=document.getElementById('icons'),h='';
+cols.forEach(function(c,i){h+=i===5?'<span class="sq" title="Heartly"><svg viewBox="0 0 24 24"><use href="#ho"/></svg></span>':'<i style="--c:'+c+'"></i>'});
+box.innerHTML=h;
+// QR
+(function(){
+var n=29,s=7,r=s,g=[],out='';
+function rnd(){s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff}
+function finder(x,y){return(x<8&&y<8)||(x>n-9&&y<8)||(x<8&&y>n-9)}
+for(var y=0;y<n;y++)for(var x=0;x<n;x++){
+var on=false;
+if(finder(x,y)){var fx=x>n-9?x-(n-7):x,fy=y>n-9?y-(n-7):y;
+if(x>n-9)fx=x-(n-7);else fx=x;if(y>n-9)fy=y-(n-7);else fy=y;
+on=fx>=0&&fx<7&&fy>=0&&fy<7&&(fx===0||fx===6||fy===0||fy===6||(fx>1&&fx<5&&fy>1&&fy<5));
+}else if(x>10&&x<18&&y>10&&y<18){on=false}
+else on=rnd()>.52;
+if(on)out+='<rect x="'+x+'" y="'+y+'" width="1.020" height="1.020" rx=".28"/>';
+}
+out='<g fill="#1A1200">'+out+'</g><rect x="10.500" y="10.500" width="8" height="8" rx="2.200" fill="#fff"/><g fill="none" stroke="#1A1200" stroke-width=".7" stroke-linejoin="round"><path d="M12 13.200h1.200l.6-1h1.400l.6 1H17v3.800H12z"/><circle cx="14.500" cy="15" r="1.100"/></g>';
+document.getElementById('qrsvg').innerHTML=out;
+})();
+// parallax
+var stage=document.getElementById('stage');
+if(!reduce){
+var items=[].slice.call(stage.querySelectorAll('.s')),tx=0,ty=0,cx=0,cy=0,raf;
+function loop(){cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;
+items.forEach(function(el){var d=parseFloat(el.dataset.d)||.05;el.style.setProperty('--px',(cx*d*-100)+'px');el.style.setProperty('--py',(cy*d*-100)+'px')});
+raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.001)?requestAnimationFrame(loop):0}
+addEventListener('pointermove',function(e){tx=e.clientX/innerWidth-.5;ty=e.clientY/innerHeight-.5;if(!raf)raf=requestAnimationFrame(loop)},{passive:true});
+}
+// reveal
+var rv=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window&&!reduce){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.15});rv.forEach(function(el){io.observe(el)})}else rv.forEach(function(el){el.classList.add('on')});
+// fit wordmark to width
+var w=document.getElementById('word');
+function fit(){w.style.fontSize='100px';var avail=w.parentElement.clientWidth-24,cw=w.scrollWidth-24;var fs=Math.min(150,100*avail/cw);w.style.fontSize=fs+'px'}
+fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+})();
+</script>
+</body>
+</html>
